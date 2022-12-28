@@ -25,10 +25,21 @@ if os.path.isfile(id_list_path) == False:
 
 @app.route("/")
 def main():
-    return "test"
+    return redirect("./static/main/index.html",code=200)
+
+#id_list.csvを返す
+@app.route("/id_list")
+def id_list_csv():
+    f = open("./id_list.csv","r")
+    f_content = str(f.read())
+    f.close()
+    response = make_response(f_content)
+    response.headers["Content-Type"] = "text/plain"
+    return response
 
 
-#コマンド登録ページ(仮) http://localhost:5000/static/reg.html
+#コマンド登録ページ(仮) http://localhost:5000/static/register/index.html
+#メインページ          http://localhost:5000/static/main/index.html
 
 #コマンドを登録(post)
 @app.route("/reg/post/", methods=["GET", "POST"])

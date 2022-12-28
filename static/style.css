@@ -1,0 +1,64 @@
+
+/* inter font */
+:root { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  :root { font-family: 'Inter var', sans-serif; }
+}
+
+
+.page_title{
+    margin-top:9vh;
+    margin-left:7vw;
+    font-size:2.5em;
+}
+
+
+.cmdtable{
+    margin-top:10vh;
+    width:70vw;
+    border-radius:0.3em;
+    background:#888888;
+    border: 2px solid #888888;
+    border-spacing: 0;
+}
+
+.cmdtable thead{
+    height:2.5em;
+    font-size:1.2em;
+    color:#ffffff;
+    background:#888888;
+}
+.cmdtable th{
+    font-weight:normal;
+    border-left: none;
+    text-align: left;
+    padding-left:2em;
+}
+
+.cmdtable tbody{
+    height:2.5em;
+    font-size:1.2em;
+    color:#000000;
+    background:#ffffff;
+}
+
+
+.btn {
+    font-size: 1.2em;
+    position: relative;
+    display:inline-block;
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    color: #ffffff;
+    border-radius: 0.5rem;
+    background-color: #2091f3;
+}
