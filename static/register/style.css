@@ -1,0 +1,59 @@
+
+/* inter font */
+:root { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  :root { font-family: 'Inter var', sans-serif; }
+}
+
+
+.page_title{
+    margin-top:9vh;
+    margin-left:7vw;
+    font-size:2.5em;
+}
+
+.main_box{
+    width:35vw;
+    height:75vh;
+    margin-top:5vh;
+    margin-left:30vw;
+
+    background:#aaaaaa;
+    border:1px solid #aaaaaa;
+    border-radius:0.5em;
+}
+
+
+.input_text{
+    font-size:1em;
+    border-radius:0.4em;
+
+    height:2em;
+    width:25vw;
+    border:1px solid #aaaaaa;
+}
+
+
+.titleb{
+    font-size:1.7em;
+}
+
+.btn {
+    font-size: 1.2em;
+    position: relative;
+    display:inline-block;
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    color: #ffffff;
+    border-radius: 0.5rem;
+    background-color: #2091f3;
+}

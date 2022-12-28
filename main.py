@@ -8,6 +8,7 @@ app = Flask(__name__,static_folder="./static")
 #コマンドのidとその時に実行する関数を紐づける
 #$(spl%)はメタ文字
 #[コマンドid]$(spl%)[その時に実行する機能など]$(cmd%)その機能の中で実行する機能
+#command_id$(spl%)function(cmd%)content/command
 #例
 #cmd1$(spl%)os_cmd$(cmd%)start chrome
 
@@ -25,7 +26,7 @@ if os.path.isfile(id_list_path) == False:
 
 @app.route("/")
 def main():
-    return redirect("./static/main/index.html",code=200)
+    return redirect("./static/main/index.html")
 
 #id_list.csvを返す
 @app.route("/id_list")
@@ -46,8 +47,9 @@ def id_list_csv():
 def make_command():
     cmd_id = str(request.form["id"]) #command id
     cmd_func = str(request.form["func"]) #function
+    cmd_content = str(request.form["cmd"]) #command
     
-    this_id = add_id(cmd_id,cmd_func) #ファイルに追加
+    this_id = add_id(cmd_id,cmd_func+"$(cmd%)"+cmd_content) #ファイルに追加
     return this_id
 
 
@@ -64,6 +66,7 @@ def make_command():
 #start explorer　が実行される
 
 
+#/run/[command_id]
 #コマンド実行
 @app.route("/run/<cmd_id>",methods=["GET"])
 def run_command(cmd_id):

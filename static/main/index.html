@@ -1,11 +1,13 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link href="../style.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
 
         <!--inter font-->
         <link rel="preconnect" href="https://rsms.me/">
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
+        <title>Mycturl - dashboard</title>
     </head>
 
     <body>
@@ -15,27 +17,31 @@
 
         <div style="padding-left:7vw;padding-top:10vh;width:70vw;">
             <div style="text-align: right">
-                <a class="btn">New command</a>
+                <a href="../register/index.html" class="btn">New command id</a>
             </div>
 
             <table class="cmdtable">
                 <thead>
                     <tr>
-                        <th style="width:10vw;">id</th>
+                        <th style="width:10vw;">command id</th>
                         <th>url</th>
                         <th style="width:10vw;">function</th>
-                        <th style="width:15vw;">content</th>
+                        <th style="width:13vw;">content</th>
+                        <th style="width:4em;"></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="func_list_box">
                     <tr>
                         <th>id_name</th>
                         <th>http://localhost:5000/run/...</th>
                         <th>function_name</th>
                         <th>content</th>
+                        <th><span class="edit_button">edit</span></th>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+        <script src="./main.js"></script>
     </body>
 </html>

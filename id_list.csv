@@ -1,0 +1,3 @@
+a$(spl%)os_cmd$(cmd%)start chrome
+b$(spl%)os_cmd$(cmd%)start explorer
+c$(spl%)os_cmd$(cmd%)start cmd
