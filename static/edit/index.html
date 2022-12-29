@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="style.css" rel="stylesheet">
+
+        <!--inter font-->
+        <link rel="preconnect" href="https://rsms.me/">
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
+        <title>Mycturl - Register a new id</title>
+    </head>
+
+    <body>
+        <div class="page_title">
+            Edit a command
+        </div>
+
+        <div class="main_box">
+            <div style="margin-top:10vh;margin-left:5vw;">
+                <span class="titleb">Edit a command</span>
+                <a href="#" style="padding-left:5vw;">help</a>
+                <br><br>
+                <form action="/edit/post" method="POST">
+                    command id<br><br>
+                    <input type="text" name="id" class="input_text" id="id"><br><br>  <!--command id-->
+                    function(Event name)<br><br>
+                    <input type="text" name="func" class="input_text" id="func"><br><br> <!--function-->
+
+                    content(command)<br><br>
+                    <input type="text" name="cmd" class="input_text" id="cmd"><br><br>
+                    <input type="submit" value="save" class="btn" style="border:0px;">
+                </form>
+            </div>
+        </div>
+
+        <script src="./main.js"></script>
+    </body>
+</html>

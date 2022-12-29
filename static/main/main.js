@@ -9,6 +9,10 @@ function getCSV(){
 	convertCSVtoArray(req.responseText); // 渡されるのは読み込んだCSVデータ
     }
 }
+
+getCSV(); //最初に実行される
+
+
  
 // 読み込んだCSVデータを二次元配列に変換する関数convertCSVtoArray()の定義
 function convertCSVtoArray(str){ // 読み込んだCSVデータが文字列として渡される
@@ -27,18 +31,29 @@ function convertCSVtoArray(str){ // 読み込んだCSVデータが文字列と�
     for(var i = 0;i < result.length;i++){
         if(result[i][1] != undefined){
             console.log(result[i][1])
+            //id: result[i][0] func:func_tmp[0] cmd:func_tmp[1]
             var func_tmp = result[i][1].split("$(cmd%)")
             result_html += "<tr>"
             +"<th>"+result[i][0]+"</th>"
             +"<th>http://"+location.host+"/run/"+result[i][0]+"</th>"
             +"<th>"+func_tmp[0]+"</th>"
             +"<th>"+func_tmp[1]+"</th>"
-            +"<th><span class='edit_button'>edit</span></th>"
+            +"<th><span onclick='id_del(event)' style='color:#ff0000;'>delete</span></th>"
+            +"<th><a href='../edit/index.html?id="+result[i][0]+"&func="+func_tmp[0]+"&cmd="+func_tmp[1]+"' class='edit_button'>edit</a></th>"
             +"</tr>"
         }
     }
 
     document.getElementById("func_list_box").innerHTML = result_html
 }
- 
-getCSV(); //最初に実行される
+
+//削除ボタンが押されたらコマンド削除
+function id_del(e){
+    id_name = e.target.parentElement.parentElement.getElementsByTagName("th")[0].textContent 
+
+    var req = new XMLHttpRequest(); // HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
+    req.open("get", "/del/post/"+id_name, true); // アクセスするファイルを指定
+    req.send(null); // HTTPリクエストの発行
+
+    e.target.parentElement.parentElement.remove()
+}

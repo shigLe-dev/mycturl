@@ -26,7 +26,7 @@ if os.path.isfile(id_list_path) == False:
 
 @app.route("/")
 def main():
-    return redirect("./static/main/index.html")
+    return redirect("/static/main/index.html")
 
 #id_list.csvを返す
 @app.route("/id_list")
@@ -50,7 +50,28 @@ def make_command():
     cmd_content = str(request.form["cmd"]) #command
     
     this_id = add_id(cmd_id,cmd_func+"$(cmd%)"+cmd_content) #ファイルに追加
-    return this_id
+    return redirect("/static/main/index.html")
+
+#コマンドを編集(post)
+#そのコマンドを一旦削除→
+#新規作成を行う
+@app.route("/edit/post/", methods=["GET", "POST"])
+def edit_command():
+    cmd_id = str(request.form["id"]) #command id
+    cmd_func = str(request.form["func"]) #function
+    cmd_content = str(request.form["cmd"]) #command
+
+    del_id(cmd_id)
+    
+    this_id = add_id(cmd_id,cmd_func+"$(cmd%)"+cmd_content) #ファイルに追加
+    return redirect("/static/main/index.html")
+
+#コマンドを消す
+@app.route("/del/post/<cmd_id>")
+def delete_command(cmd_id):
+    del_id(cmd_id)
+    return "succeed!"
+
 
 
 #コマンド実行についてのメタ文字
@@ -89,6 +110,36 @@ def run_command(cmd_id):
     
     return ret_msg
 
+
+#commandを消す
+#消したいcommand id
+def del_id(cmd_id):
+    global id_list_path
+    
+    #重複していたら削除
+    f = open(id_list_path,"r")
+    list_line = f.readlines() #一行ずつ読む
+    f.close()
+
+    for i in range(len(list_line)):
+        if cmd_id == list_line[i].split("$(spl%)")[0]:
+            list_line.pop(i)
+            break;
+            pass
+        pass
+
+    write_file = ""
+
+    for i in list_line:
+        write_file += i+"\n"
+        pass
+
+    
+    f = open(id_list_path,"w")
+    f.write(write_file)
+    f.close()
+    
+    pass
 
 #csvファイルにidと機能の関連付けを追加
 #idが重複しているときはやめる return "filename_error"
