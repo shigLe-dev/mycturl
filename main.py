@@ -47,7 +47,7 @@ def id_list_csv():
 def make_command():
     cmd_id = str(request.form["id"]) #command id
     cmd_func = str(request.form["func"]) #function
-    cmd_content = str(request.form["cmd"]) #command
+    cmd_content = str(request.form["cmd"]).replace("\n","$(n%)").replace("\r","") #command #改行を$(n%)に変換
     
     this_id = add_id(cmd_id,cmd_func+"$(cmd%)"+cmd_content) #ファイルに追加
     return redirect("/static/main/index.html")
@@ -59,7 +59,7 @@ def make_command():
 def edit_command():
     cmd_id = str(request.form["id"]) #command id
     cmd_func = str(request.form["func"]) #function
-    cmd_content = str(request.form["cmd"]) #command
+    cmd_content = str(request.form["cmd"]).replace("\n","$(n%)").replace("\r","") #command
 
     del_id(cmd_id)
     
@@ -150,10 +150,14 @@ def add_id(cmd_id,cmd_func):
     #空白の場合はランダムにidを作成
     if cmd_id == "":
         ab_list = [chr(ord("A")+i) for i in range(26)] #A~Zが並べられたリストを作成
+        for i in range(26):
+            ab_list.append(chr(ord("a")+1))
+            pass
+        
 
-        #10文字のidをA~Zでランダムに作成
-        for i in range(10):
-            cmd_id += ab_list[random.randint(0,25)]
+        #20文字のidをA~Zでランダムに作成
+        for i in range(20):
+            cmd_id += ab_list[random.randint(0,54)]
             pass
         pass
     
@@ -211,14 +215,40 @@ def run_function(func,param):
 
     func_list = func.split("$(cmd%)")
 
+    return_text = ""
+
     #コマンド名を判断し、実行
     
     if func_list[0] == "os_cmd": #osコマンド(cmd bashなど)
-        subprocess.run(func_list[1],shell=True)
+        run_text = func_list[1].split("$(n%)") #改行で区切って実行
+        for run_cmd in run_text: #一行ずつコマンド実行
+            return_text = subprocess.run(run_cmd,shell=True,check=True,stdout=subprocess.PIPE).stdout.decode('utf-8')
+            pass
+        pass
+    elif func_list[0] == "open": #open application
+        subprocess.Popen(["start", func_list[1]], shell=True)
+        pass
+    elif func_list[0] == "write_file":#write file
+        run_text = func_list[1].split("$(n%)") #$(n%)　は改行なので区切る
+
+        file_text = ""
+        
+        for i in range(len(run_text)-1): #2行目以降はファイルの内容
+            file_text += run_text[i+1]+"\n"
+            pass
+        
+        f = open(run_text[0],"w") #1行目はfile path
+        f.write(file_text)
+        f.close()
         pass
 
     ##############
+
+    print("function: "+func+" succeed!")
+
+    response = make_response(return_text)
+    response.headers["Content-Type"] = "text/plain"
     
-    return "function: "+func+" succeed!"
+    return response
 
 app.run(port=5000)

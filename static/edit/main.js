@@ -6,7 +6,7 @@ window.onload = function(){
 
     document.getElementById("func").value = query_list["func"]
 
-    document.getElementById("cmd").value = query_list["cmd"]
+    document.getElementById("cmd").value = query_list["cmd"].replaceAll("$(n%)","\n") //$(n%)と\nを変換
 }
 
 

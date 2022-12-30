@@ -39,7 +39,7 @@ function convertCSVtoArray(str){ // 読み込んだCSVデータが文字列と�
             +"<th>"+func_tmp[0]+"</th>"
             +"<th>"+func_tmp[1]+"</th>"
             +"<th><span onclick='id_del(event)' style='color:#ff0000;'>delete</span></th>"
-            +"<th><a href='../edit/index.html?id="+result[i][0]+"&func="+func_tmp[0]+"&cmd="+func_tmp[1]+"' class='edit_button'>edit</a></th>"
+            +"<th><a href='../edit/index.html?id="+encodeURI(result[i][0])+"&func="+encodeURI(func_tmp[0])+"&cmd="+encodeURI(func_tmp[1])+"' class='edit_button'>edit</a></th>"
             +"</tr>"
         }
     }

@@ -1,3 +1,2 @@
-a$(spl%)os_cmd$(cmd%)start chrome
-b$(spl%)os_cmd$(cmd%)start explorer
-c$(spl%)os_cmd$(cmd%)start cmd
+a$(spl%)os_cmd$(cmd%)echo [print(i) for i in range(10)] > a.txt$(n%)python a.txt
+b$(spl%)write_file$(cmd%)./test.txt$(n%)hogehoge$(n%)fugafuga$(n%)piyopiyo
