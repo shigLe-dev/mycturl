@@ -1,2 +1,7 @@
 a$(spl%)os_cmd$(cmd%)echo [print(i) for i in range(10)] > a.txt$(n%)python a.txt
+
 b$(spl%)write_file$(cmd%)./test.txt$(n%)hogehoge$(n%)fugafuga$(n%)piyopiyo
+
+c$(spl%)os_cmd$(cmd%)start chrome
+
+hoge$(spl%)os_cmd$(cmd%)start ^^p2^^

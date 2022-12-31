@@ -15,7 +15,7 @@
 
 .cmdtable{
     margin-top:10vh;
-    width:70vw;
+    width:80vw;
     border-radius:0.3em;
     background:#888888;
     border: 2px solid #888888;
@@ -33,6 +33,7 @@
     border-left: none;
     text-align: left;
     padding-left:2em;
+    word-break: break-all;
 }
 
 .cmdtable tr{

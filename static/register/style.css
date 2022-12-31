@@ -35,6 +35,35 @@
 }
 
 
+#query_add{
+    display:inline-block;
+    margin-left:0.3em;
+    width:1.5em;
+    height:1.5em;
+    background:url(../plus_add.svg)
+}
+
+#add_window{
+    display:none;
+    position:absolute;
+    overflow:hidden;
+    padding-left:0.5em;
+    width:14em;
+    height:5em;
+    z-index:2;
+    color:#ffffff;
+    background:#000000;
+    border-radius:0.3em;
+}
+
+#param_text{
+    width:6em;
+    height:2em;
+    border-radius:0.2em;
+    border:1px solid #000000;
+}
+
+
 .titleb{
     font-size:1.7em;
 }
@@ -56,5 +85,6 @@
     text-decoration: none;
     color: #ffffff;
     border-radius: 0.5rem;
+    border:0px;
     background-color: #2091f3;
 }

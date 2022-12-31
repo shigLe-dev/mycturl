@@ -24,17 +24,34 @@
                     command id<br><br>
                     <input type="text" name="id" class="input_text"><br><br>  <!--command id-->
                     function(Event name)<br><br>
-                    <input type="text" name="func" class="input_text"><br><br> <!--function-->
+                    <!--function-->
+                    <select name="func" id="func_box" class="input_text">
+                        <option value="os_cmd">OS command</option>
+                        <option value="open">Open an software</option>
+                        <option value="write_file">Write in the file or Make a file</option>
+                    </select>
+                    <br><br>
 
                     content(command)<br><br>
-                    <textarea name="cmd" class="input_text"></textarea><br><br>
-                    <input type="submit" value="save" class="btn" style="border:0px;">
+                    <textarea name="cmd" class="input_text" id="cmd"></textarea>
+
+                    <div style="display:inline-block;position:relative;">
+                        <div id="query_add"></div>
+                        <!--add a new url query-->
+                        <div id="add_window">
+                            Add a url query parametor<br><br>
+                            <input type="text" id="param_text">
+                            <div class="btn" id="add_param" style="padding-top:0.1em;padding-bottom:0.1em;">Add</div>
+                        </div>
+                    </div>
+
+                    <br><br>
+                    <input type="submit" value="save" class="btn">
                     <a href="/" class="btn" style="margin-left:8vw;background:#000000">cancel</a>
                 </form>
             </div>
         </div>
 
-        <script>
-        </script>
+        <script src="./add_query.js"></script>
     </body>
 </html>

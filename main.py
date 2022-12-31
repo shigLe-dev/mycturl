@@ -219,16 +219,17 @@ def run_function(func,param):
 
     #コマンド名を判断し、実行
     
-    if func_list[0] == "os_cmd": #osコマンド(cmd bashなど)
+    if func_list[0].find("os_cmd") != -1: #osコマンド(cmd bashなど)
         run_text = func_list[1].split("$(n%)") #改行で区切って実行
         for run_cmd in run_text: #一行ずつコマンド実行
             return_text = subprocess.run(run_cmd,shell=True,check=True,stdout=subprocess.PIPE).stdout.decode('utf-8')
             pass
         pass
-    elif func_list[0] == "open": #open application
+    elif func_list[0].find("open") != -1: #open application
         subprocess.Popen(["start", func_list[1]], shell=True)
         pass
-    elif func_list[0] == "write_file":#write file
+    
+    elif func_list[0].find("write_file") != -1:#write file
         run_text = func_list[1].split("$(n%)") #$(n%)　は改行なので区切る
 
         file_text = ""

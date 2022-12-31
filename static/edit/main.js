@@ -4,7 +4,16 @@ window.onload = function(){
 
     document.getElementById("id").value = query_list["id"]
 
-    document.getElementById("func").value = query_list["func"]
+    //valueが取得したfunctionと同じfunc_boxを選択
+    var func_sel = document.getElementById("func_box")
+
+    var opt = func_sel.getElementsByTagName("option")
+    for(var i = 0;i < opt.length;i++){
+      if(opt[i].value.includes(query_list["func"])){
+        opt[i].selected = true;
+      }  
+    }
+
 
     document.getElementById("cmd").value = query_list["cmd"].replaceAll("$(n%)","\n") //$(n%)と\nを変換
 }
