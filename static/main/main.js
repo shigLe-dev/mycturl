@@ -10,6 +10,7 @@ function getCSV(){
     }
 }
 
+get_ip(); //ipを取得
 getCSV(); //最初に実行される
 
 
@@ -35,7 +36,7 @@ function convertCSVtoArray(str){ // 読み込んだCSVデータが文字列と�
             var func_tmp = result[i][1].split("$(cmd%)")
             result_html += "<tr>"
             +"<th>"+result[i][0]+"</th>"
-            +"<th>http://"+location.host+"/run/"+result[i][0]+"</th>"
+            +"<th>http://"+host_ip+":"+location.port+"/run/"+result[i][0]+"</th>" //host_ip: ローカルホストのip
             +"<th>"+func_tmp[0]+"</th>"
             +"<th>"+func_tmp[1]+"</th>"
             +"<th><span onclick='id_del(event)' style='color:#ff0000;'>delete</span></th>"
@@ -56,4 +57,16 @@ function id_del(e){
     req.send(null); // HTTPリクエストの発行
 
     e.target.parentElement.parentElement.remove()
+}
+
+var host_ip;
+
+function get_ip(){
+    var req = new XMLHttpRequest(); // HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
+    req.open("get", "/get_ip", true); // アクセスするファイルを指定
+    req.send(null); // HTTPリクエストの発行
+
+    req.onload = function(){
+	    host_ip = req.responseText
+    }
 }

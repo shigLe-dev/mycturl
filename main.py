@@ -1,6 +1,7 @@
 import os
 import subprocess
 import random
+import socket
 from flask import *
 
 app = Flask(__name__,static_folder="./static")
@@ -37,6 +38,12 @@ def id_list_csv():
     response = make_response(f_content)
     response.headers["Content-Type"] = "text/plain"
     return response
+
+@app.route("/get_ip")
+def get_ip():
+    #このコンピューターのipアドレスを取得
+    ip = socket.gethostbyname(socket.gethostname())
+    return str(ip)
 
 
 #コマンド登録ページ(仮) http://localhost:5000/static/register/index.html
@@ -151,13 +158,13 @@ def add_id(cmd_id,cmd_func):
     if cmd_id == "":
         ab_list = [chr(ord("A")+i) for i in range(26)] #A~Zが並べられたリストを作成
         for i in range(26):
-            ab_list.append(chr(ord("a")+1))
+            ab_list.append(chr(ord("a")+i))
             pass
         
 
         #20文字のidをA~Zでランダムに作成
         for i in range(20):
-            cmd_id += ab_list[random.randint(0,54)]
+            cmd_id += ab_list[random.randint(0,51)]
             pass
         pass
     
@@ -252,4 +259,4 @@ def run_function(func,param):
     
     return response
 
-app.run(port=5000)
+app.run(host="0.0.0.0",port=5000)
