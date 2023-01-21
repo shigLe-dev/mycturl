@@ -39,12 +39,6 @@ def id_list_csv():
     response.headers["Content-Type"] = "text/plain"
     return response
 
-@app.route("/get_ip")
-def get_ip():
-    #このコンピューターのipアドレスを取得
-    ip = socket.gethostbyname(socket.gethostname())
-    return str(ip)
-
 
 #コマンド登録ページ(仮) http://localhost:5000/static/register/index.html
 #メインページ          http://localhost:5000/static/main/index.html

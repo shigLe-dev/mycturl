@@ -62,11 +62,14 @@ function id_del(e){
 var host_ip;
 
 function get_ip(){
+    /*
     var req = new XMLHttpRequest(); // HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
     req.open("get", "/get_ip", true); // アクセスするファイルを指定
     req.send(null); // HTTPリクエストの発行
 
     req.onload = function(){
 	    host_ip = req.responseText
-    }
+    }*/
+
+    host_ip = location.hostname
 }
